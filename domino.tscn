@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://nua32chhj8xl"]
+
+[ext_resource type="Texture2D" uid="uid://rqmjxyeihsa" path="res://domino.png" id="1_aqdv7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12tf6"]
+size = Vector3(0.24, 0.48, 0.075)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21ek4"]
+albedo_texture = ExtResource("1_aqdv7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_vrdmg"]
+material = SubResource("StandardMaterial3D_21ek4")
+size = Vector3(0.24, 0.48, 0.075)
+
+[node name="domino" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_12tf6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vrdmg")

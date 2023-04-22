@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://daji7begt4agk"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_nr3hg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ledtj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rmmof"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88iaf"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_omh2y"]
+material = SubResource("StandardMaterial3D_88iaf")
+radius = 0.01
+height = 0.02
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_nr3hg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ledtj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_rmmof")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -7)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 1
+
+[node name="cursor" type="MeshInstance3D" parent="Camera3D/RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+mesh = SubResource("SphereMesh_omh2y")
