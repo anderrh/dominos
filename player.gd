@@ -12,7 +12,7 @@ var leftbutton:bool
 var rightbutton:bool
 var hover_object:RigidBody3D
 const highlight=preload("res://highlight.tres")
-
+const domino=preload("res://domino.tscn")
 
 
 
@@ -56,6 +56,9 @@ func _physics_process(delta):
 		if hover_object !=null:
 				hover_object.get_node("MeshInstance3D").material_overlay=null
 		hover_object = null
+	if rightbutton:
+		rightbutton=false
+		place_domino(raycast.get_collision_point())
 	if leftbutton:
 		leftbutton=false
 		if hit is RigidBody3D:
@@ -86,5 +89,14 @@ func _input(event):
 		Input.mouse_mode=Input.MOUSE_MODE_CAPTURED
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode=Input.MOUSE_MODE_VISIBLE
+
+
+
+func place_domino(pos):
+	var clone_domino=domino.instantiate()
+	clone_domino.position
+	get_parent().add_child(clone_domino)
+	
+	
 
 
